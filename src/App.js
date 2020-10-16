@@ -9,7 +9,7 @@ import Palette from "./components/Palette";
 import getProminetColors from "./util/getProminentColors";
 
 const Layout = styled.main`
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;
