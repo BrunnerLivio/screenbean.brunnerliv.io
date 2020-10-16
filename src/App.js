@@ -14,6 +14,15 @@ const Layout = styled.main`
   flex-direction: column;
 `;
 
+const Logo = styled.img`
+  margin-top: 64px;
+  margin-bottom: 64px;
+  @media only screen and (max-width: 800px) {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+`
+
 const Content = styled.div`
   padding: 16px;
   display: flex;
@@ -44,7 +53,7 @@ function App() {
     return (
       <Layout>
         <Content>
-          <img
+          <Logo
             src="/logo.png"
             alt="Logo"
             style={{ marginTop: "64px", marginBottom: "64px" }}
