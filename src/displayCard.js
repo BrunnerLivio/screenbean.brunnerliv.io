@@ -2,20 +2,17 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { saveAs } from "file-saver";
 import htmlToImage from "html-to-image";
+import { generateBoxShadow } from "./util/generateBoxShadow";
 
 const Card = styled.div`
   border-radius: 8px;
-  margin: 32px;
+  margin: 0 32px;
   overflow: hidden;
   position: relative;
-  &:hover > .action-bar {
-    opacity: 1;
-  }
+  box-shadow: ${generateBoxShadow('#000000')};
 `;
 
 const ActionBar = styled.div`
-  opacity: 0;
-  transition: 0.5s ease-in-out opacity;
   position: absolute;
   left: 0;
   bottom: 0;

@@ -1,11 +1,18 @@
-import React, { useRef } from "react";
+import React, { useCallback, useState } from "react";
 import displayCard from "./displayCard";
 import * as displays from "./displays";
-import useProminetColors from "./useProminentColors";
+import getProminetColors from "./util/getProminentColors";
 import styled from "styled-components";
 import Color from "./Color";
+import Dropzone from "./Dropzone";
+import useWindowSize from "./util/useWindowSize";
 
-const displayComponents = Object.values(displays).map((c) => displayCard(c));
+const displayComponents = Object.values(displays).map(
+  ({ component, ...rest }) => ({
+    ...rest,
+    component: displayCard(component),
+  })
+);
 
 const DisplayRow = styled.section`
   display: flex;
@@ -13,22 +20,79 @@ const DisplayRow = styled.section`
   max-width: 1200px;
   flex-wrap: wrap;
   margin: auto;
+  padding: 32px 0;
 `;
 
 const Layout = styled.main`
-  min-width: 100%;
   min-height: 100vh;
-  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Content = styled.div`
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: rgb(66, 36, 241);
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    344deg,
+    rgba(66, 36, 241, 1) 0%,
+    rgba(109, 131, 233, 1) 51%,
+    rgba(157, 237, 225, 1) 100%
+  );
+`;
+
+const DisplayWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const DisplayDescription = styled.p`
+  margin: 64px 32px 16px 32px;
+  color: #696670;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
 `;
 
 function App() {
-  const fileInput = useRef();
-  const { colors, ...result } = useProminetColors(fileInput);
+  const [{ colors, ...result }, setColors] = useState({
+    colors: null,
+    image: null,
+  });
+
+  const onDrop = useCallback(async (acceptedFiles) => {
+    const c = await getProminetColors(acceptedFiles[0]);
+    setColors(c);
+  }, []);
+
+  const window = useWindowSize();
+
+  let width = 1200;
+  const ratio = 0.75;
+
+  if (window.width < 2600) {
+    width = 600;
+  }
+  if (window.width < 2000) {
+    width = 500;
+  }
+  if (window.width < 1800) {
+    width = 400;
+  }
+  if (window.width < 1100) {
+    width = 300;
+  }
 
   if (!colors) {
     return (
       <Layout>
-        <input ref={fileInput} type="file" />
+        <Content>
+          <Dropzone onDrop={onDrop} />
+        </Content>
       </Layout>
     );
   }
@@ -46,15 +110,18 @@ function App() {
         <Color name="Dark Muted" background={colors.DarkMuted.hex}></Color>
         <Color name="Light Muted" background={colors.LightMuted.hex}></Color>
       </DisplayRow>
-      <DisplayRow>
-        {displayComponents.map((Component, index) => (
-          <Component
-            colors={colors}
-            {...result}
-            width={500}
-            height={374.69}
-            key={index}
-          />
+      <DisplayRow style={{ marginBottom: "128px" }}>
+        {displayComponents.map(({ name, component: Component }, index) => (
+          <DisplayWrapper>
+            <DisplayDescription>{name}</DisplayDescription>
+            <Component
+              colors={colors}
+              {...result}
+              width={width}
+              height={width * ratio}
+              key={index}
+            />
+          </DisplayWrapper>
         ))}
       </DisplayRow>
     </Layout>

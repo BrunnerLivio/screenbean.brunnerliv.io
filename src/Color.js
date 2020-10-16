@@ -2,19 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 const ColorBlock = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
   background: ${(props) => props.background};
+  margin-bottom: 8px;
 `;
 
 const ColorContainer = styled.div`
   font-size: 10px;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   text-align: center;
   text-overflow: wrap;
-  margin: 16px;
+  margin: 12px;
+  margin-bottom: 32px;
 `;
 
 export default function Color({ name, ...props }) {

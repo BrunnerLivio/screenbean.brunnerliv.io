@@ -6,28 +6,53 @@ import {
   neomorphismBoxShadow,
 } from "../util/generateBoxShadow";
 
-export const VibrantBackgroundDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
+export const VibrantBackgroundDisplay = {
+  name: "Vibrant Simple Background",
+  component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
       background={(colors) => colors.Vibrant.hex}
       {...props}
     />
-  )
-);
+  )),
+};
 
-export const DarkVibrantBackgroundDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
+export const DarkVibrantBackgroundDisplay = {
+  name: "Dark Vibrant Simple Background",
+  component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
       background={(colors) => colors.DarkVibrant.hex}
       {...props}
     />
-  )
-);
+  )),
+};
 
-export const VibrantGradientBackgroundDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
+export const LightVibrantBackgroundDisplay = {
+  name: "Light Vibrant Simple Background",
+  component: React.forwardRef(({ ...props }, ref) => (
+    <BackgroundDisplay
+      ref={ref}
+      background={(colors) => colors.LightVibrant.hex}
+      {...props}
+    />
+  )),
+};
+
+export const MutedBackgroundDisplay = {
+  name: "Muted Simple Background",
+  component: React.forwardRef(({ ...props }, ref) => (
+    <BackgroundDisplay
+      ref={ref}
+      background={(colors) => colors.Muted.hex}
+      {...props}
+    />
+  )),
+};
+
+export const VibrantGradientBackgroundDisplay = {
+  name: "Vibrant Gradient Background",
+  component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
       background={(colors) =>
@@ -35,11 +60,12 @@ export const VibrantGradientBackgroundDisplay = React.forwardRef(
       }
       {...props}
     />
-  )
-);
+  )),
+};
 
-export const DarkGradientBackgroundDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
+export const DarkGradientBackgroundDisplay = {
+  name: "Dark Vibrant Gradient Background",
+  component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
       background={(colors) =>
@@ -47,71 +73,60 @@ export const DarkGradientBackgroundDisplay = React.forwardRef(
       }
       {...props}
     />
-  )
-);
+  )),
+};
 
-export const LightVibrantBackgroundDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
-    <BackgroundDisplay
-      ref={ref}
-      background={(colors) => colors.LightVibrant.hex}
-      {...props}
-    />
-  )
-);
-
-export const MutedBackgroundDisplay = React.forwardRef(({ ...props }, ref) => (
-  <BackgroundDisplay
-    ref={ref}
-    background={(colors) => colors.Muted.hex}
-    {...props}
-  />
-));
-
-export const VibrantMaterialShadowDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
+export const VibrantMaterialShadowDisplay = {
+  name: "Vibrant Material Shadow",
+  component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
       boxShadow={(colors) => generateBoxShadow(colors.Vibrant.hex)}
       background={(colors) => `${colors.LightVibrant.hex}`}
       {...props}
     />
-  )
-);
+  )),
+};
 
-export const DarkVibrantMaterialShadowDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
+export const DarkVibrantMaterialShadowDisplay = {
+  name: "Dark Vibrant Material Shadow",
+  component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
       boxShadow={(colors) => generateBoxShadow(colors.DarkVibrant.hex)}
       background={(colors) => `${colors.Muted.hex}`}
       {...props}
     />
-  )
-);
+  )),
+};
 
-export const VibrantNeoShadowDisplay = React.forwardRef(({ ...props }, ref) => (
-  <BackgroundDisplay
-    ref={ref}
-    boxShadow={(colors) => neomorphismBoxShadow(colors.Vibrant.hex)}
-    background={(colors) => `${colors.Vibrant.hex}`}
-    {...props}
-  />
-));
+export const VibrantNeoShadowDisplay = {
+  name: "Vibrant Neomorphism Shadow",
+  component: React.forwardRef(({ ...props }, ref) => (
+    <BackgroundDisplay
+      ref={ref}
+      boxShadow={(colors) => neomorphismBoxShadow(colors.Vibrant.hex)}
+      background={(colors) => `${colors.Vibrant.hex}`}
+      {...props}
+    />
+  )),
+};
 
-export const DarkVibrantNeoShadowDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
+export const DarkVibrantNeoShadowDisplay = {
+  name: "Dark Vibrant Neomorphism Shadow",
+  component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
       boxShadow={(colors) => neomorphismBoxShadow(colors.DarkVibrant.hex)}
       background={(colors) => `${colors.DarkVibrant.hex}`}
       {...props}
     />
-  )
-);
+  )),
+};
 
-export const VibrantPlayfulBackgroundDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
+export const VibrantPlayfulBackgroundDisplay = {
+  name: "Vibrant Playful Background",
+  component: React.forwardRef(({ ...props }, ref) => (
     <PlayfulBackgroundDisplay
       ref={ref}
       dotTwoBackground={(colors) => colors.LightVibrant.hex}
@@ -119,11 +134,12 @@ export const VibrantPlayfulBackgroundDisplay = React.forwardRef(
       background={(colors) => colors.Vibrant.hex}
       {...props}
     />
-  )
-);
+  )),
+};
 
-export const DarkVibrantPlayfulBackgroundDisplay = React.forwardRef(
-  ({ ...props }, ref) => (
+export const DarkVibrantPlayfulBackgroundDisplay = {
+  name: "Dark Vibrant Playful Background",
+  component: React.forwardRef(({ ...props }, ref) => (
     <PlayfulBackgroundDisplay
       ref={ref}
       dotTwoBackground={(colors) => colors.Muted.hex}
@@ -131,5 +147,5 @@ export const DarkVibrantPlayfulBackgroundDisplay = React.forwardRef(
       background={(colors) => colors.DarkVibrant.hex}
       {...props}
     />
-  )
-);
+  )),
+};
