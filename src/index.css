@@ -12,3 +12,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Modal {
+  position: absolute;
+  top: 00px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: white;
+  border: none;
+  z-index: 20;
+  display: flex;
+}
+
+.Overlay {
+  border: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+}

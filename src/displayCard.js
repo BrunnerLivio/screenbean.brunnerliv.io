@@ -12,6 +12,21 @@ import Cross from "./components/icons/Cross";
 
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
+function iOS() {
+  return (
+    [
+      "iPad Simulator",
+      "iPhone Simulator",
+      "iPod Simulator",
+      "iPad",
+      "iPhone",
+      "iPod",
+    ].includes(navigator.platform) ||
+    // iPad on iOS 13 detection
+    (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  );
+}
+
 const Card = styled.div`
   border-radius: 8px;
   margin: 0 32px;
@@ -63,12 +78,26 @@ export default function displayCard(Component) {
 
     async function saveImage() {
       setIsModalOpen(true);
+      let win;
+      if (iOS()) {
+        win = window.open("");
+      }
       await sleep(500);
-
       try {
         $display.current.style.display = "flex";
-        const dataUrl = await htmlToImage.toPng($display.current);
-        saveAs(dataUrl, "image.png");
+        const dataUrl = await htmlToImage.toSvgDataURL($display.current);
+
+        // "Fuck apple"
+        // - Message sent by my Mac, which is currently connected to my iPhone
+        // In all seriousness, "saveAs" does not work on iOS, happy reading:
+        // https://www.npmjs.com/package/file-saver#ios
+        // if (iOS() && win) {
+        //   const image = new Image();
+        //   image.src = dataUrl;
+        //   win.document.write(image.outerHTML);
+        // } else {
+        saveAs(dataUrl, "image.svg");
+        // }
         setIsSaved(true);
         await sleep(500);
       } catch (error) {
@@ -145,10 +174,7 @@ export default function displayCard(Component) {
               <span>Could not save the image :(</span>
             </>
           ) : (
-            <>
-              <Loader type="Rings" color="#F0569A" height={80} width={80} />
-              <span>Saving...</span>
-            </>
+            <Loader type="Rings" color="#F0569A" height={80} width={80} />
           )}
         </SaveModal>
       </>
