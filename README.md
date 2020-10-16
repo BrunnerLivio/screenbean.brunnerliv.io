@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/logo.svg" alt="Screenbean Logo">
+  <img src="public/logo.png" alt="Screenbean Logo">
   <br />
   <br />
   <br />

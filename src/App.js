@@ -45,7 +45,7 @@ function App() {
       <Layout>
         <Content>
           <img
-            src="/logo.svg"
+            src="/logo.png"
             alt="Logo"
             style={{ marginTop: "64px", marginBottom: "64px" }}
           />
@@ -58,7 +58,7 @@ function App() {
   return (
     <Layout>
       <img
-        src="/logo.svg"
+        src="/logo.png"
         alt="Logo"
         style={{ margin: "64px", marginLeft: "128px" }}
       />
