@@ -1,24 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 import displayCard from "../displayCard";
 
 import * as displays from "../displays";
 
 import useWindowSize from "../util/useWindowSize";
+import DisplayCategory from "./DisplayCategory";
 
-const DisplayWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const DisplayDescription = styled.p`
-  margin: 64px 32px 16px 32px;
-  color: #696670;
-  font-weight: 700;
-  font-size: 16px;
-  text-align: center;
-`;
-
+// Wrap all the displays into the display card so there is a "Download"-functionality
 const displayComponents = Object.values(displays).map(
   ({ component, ...rest }) => ({
     ...rest,
@@ -26,14 +14,22 @@ const displayComponents = Object.values(displays).map(
   })
 );
 
-const DisplayRow = styled.section`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: auto;
-  padding: 32px 0;
-  margin-left: 64px;
-`;
+// Sort by categories
+const categories = [];
+
+for (const display of displayComponents) {
+  const category = categories.find((c) => c.name === display.category);
+  if (category) {
+    category.displays.push(display);
+  } else {
+    categories.push({
+      name: display.category,
+      displays: [display],
+    });
+  }
+}
+
+console.log(categories);
 
 export default function DisplayList({ colors, ...props }) {
   const window = useWindowSize();
@@ -42,31 +38,26 @@ export default function DisplayList({ colors, ...props }) {
   const ratio = 0.75;
 
   if (window.width < 2600) {
-    width = 600;
+    width = 700;
   }
   if (window.width < 2000) {
-    width = 500;
+    width = 600;
   }
   if (window.width < 1800) {
-    width = 400;
+    width = 500;
   }
   if (window.width < 1100) {
     width = 300;
   }
-  return (
-    <DisplayRow>
-      {displayComponents.map(({ name, component: Component }, index) => (
-        <DisplayWrapper>
-          <DisplayDescription>{name}</DisplayDescription>
-          <Component
-            colors={colors}
-            {...props}
-            width={width}
-            height={width * ratio}
-            key={index}
-          />
-        </DisplayWrapper>
-      ))}
-    </DisplayRow>
-  );
+
+  return categories.map((category, index) => (
+    <DisplayCategory
+      displayWidth={width}
+      displayHeight={width * ratio}
+      category={category}
+      colors={colors}
+      key={index}
+      {...props}
+    />
+  ));
 }

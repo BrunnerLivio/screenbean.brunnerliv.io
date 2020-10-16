@@ -3,11 +3,7 @@ import styled from "styled-components";
 
 import Color from "./Color";
 
-import { generateBoxShadow } from "../util/generateBoxShadow";
-
 const Colors = styled.section`
-  background: #ffffff;
-  box-shadow: ${generateBoxShadow("rgba(0,0,0,0.3)")};
   text-align: center;
   z-index: 5;
   display: flex;
