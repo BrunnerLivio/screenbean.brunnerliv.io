@@ -10,6 +10,19 @@ import { generateBoxShadow } from "./util/generateBoxShadow";
 import Check from "./components/icons/Check";
 import Cross from "./components/icons/Cross";
 
+function iOS() {
+  return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  // iPad on iOS 13 detection
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 const Card = styled.div`
@@ -71,8 +84,13 @@ export default function displayCard(Component) {
       $display.current.style.display = "flex";
 
       try {
-        const dataUrl = await htmlToImage.toSvgDataURL($display.current);
-        saveAs(dataUrl, "image.svg");
+        if(iOS()) {
+          const dataUrl = await htmlToImage.toSvgDataURL($display.current);
+          saveAs(dataUrl, "screenbean.svg");
+        } else {
+          const dataUrl = await htmlToImage.toPng($display.current);
+          saveAs(dataUrl, "screenbean.png");
+        }
         setIsSaved(true);
         await sleep(500);
       } catch (error) {
