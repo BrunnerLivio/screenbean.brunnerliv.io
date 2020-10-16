@@ -5,10 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#F1579A" />
-    <meta
-      name="description"
-      content="Pimp your screenshots!"
-    />
+    <meta name="description" content="Pimp your screenshots!" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
@@ -29,6 +26,21 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>ScreenBean - Pimp your screenshots</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-180661361-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-180661361-1");
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
