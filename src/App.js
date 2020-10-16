@@ -20,7 +20,6 @@ const Content = styled.div`
   flex-direction: column;
   flex-grow: 1;
   background: rgb(66, 36, 241);
-  justify-content: center;
   align-items: center;
   background: linear-gradient(
     344deg,
@@ -45,6 +44,11 @@ function App() {
     return (
       <Layout>
         <Content>
+          <img
+            src="/logo.svg"
+            alt="Logo"
+            style={{ marginTop: "64px", marginBottom: "64px" }}
+          />
           <Dropzone onDrop={onDrop} />
         </Content>
       </Layout>
@@ -53,6 +57,11 @@ function App() {
 
   return (
     <Layout>
+      <img
+        src="/logo.svg"
+        alt="Logo"
+        style={{ margin: "64px", marginLeft: "128px" }}
+      />
       <Palette colors={colors} />
       <DisplayList colors={colors} {...result} />
       <Footer />
