@@ -26,11 +26,18 @@ export default function displayCard(Component) {
     const $display = useRef();
 
     async function saveImage() {
-      $display.current.style.display = "flex";
-      const dataUrl = await htmlToImage.toPng($display.current);
-      $display.current.style.display = "none";
-
-      saveAs(dataUrl, "image.png");
+      try {
+        $display.current.style.display = "flex";
+        const dataUrl = await htmlToImage.toPng($display.current);
+  
+        saveAs(dataUrl, "image.png");
+      } catch(error) {
+        console.error(error);
+        alert('Could not save the image on this device :(');
+      } finally {
+        $display.current.style.display = "none";
+      }
+      
     }
 
     let imgWidth = null,
