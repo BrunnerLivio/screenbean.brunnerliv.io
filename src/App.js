@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Color from "./Color";
 import Dropzone from "./Dropzone";
 import useWindowSize from "./util/useWindowSize";
+import Footer from "./Footer";
 
 const displayComponents = Object.values(displays).map(
   ({ component, ...rest }) => ({
@@ -110,7 +111,7 @@ function App() {
         <Color name="Dark Muted" background={colors.DarkMuted.hex}></Color>
         <Color name="Light Muted" background={colors.LightMuted.hex}></Color>
       </DisplayRow>
-      <DisplayRow style={{ marginBottom: "128px" }}>
+      <DisplayRow>
         {displayComponents.map(({ name, component: Component }, index) => (
           <DisplayWrapper>
             <DisplayDescription>{name}</DisplayDescription>
@@ -124,6 +125,7 @@ function App() {
           </DisplayWrapper>
         ))}
       </DisplayRow>
+      <Footer></Footer>
     </Layout>
   );
 }
