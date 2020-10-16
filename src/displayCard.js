@@ -78,26 +78,12 @@ export default function displayCard(Component) {
 
     async function saveImage() {
       setIsModalOpen(true);
-      let win;
-      if (iOS()) {
-        win = window.open("");
-      }
+
       await sleep(500);
       try {
         $display.current.style.display = "flex";
         const dataUrl = await htmlToImage.toSvgDataURL($display.current);
-
-        // "Fuck apple"
-        // - Message sent by my Mac, which is currently connected to my iPhone
-        // In all seriousness, "saveAs" does not work on iOS, happy reading:
-        // https://www.npmjs.com/package/file-saver#ios
-        // if (iOS() && win) {
-        //   const image = new Image();
-        //   image.src = dataUrl;
-        //   win.document.write(image.outerHTML);
-        // } else {
         saveAs(dataUrl, "image.svg");
-        // }
         setIsSaved(true);
         await sleep(500);
       } catch (error) {
