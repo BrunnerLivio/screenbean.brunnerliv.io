@@ -74,7 +74,7 @@ export default function Dropzone({ onDrop }) {
   return (
     <DropareaCard>
       <Droparea {...getRootProps()}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} accept="image/png, image/jpeg, image/svg, image/gif" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="icon icon-tabler icon-tabler-cloud-upload"
