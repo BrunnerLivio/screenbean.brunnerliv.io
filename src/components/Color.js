@@ -17,6 +17,8 @@ const ColorContainer = styled.div`
   text-overflow: wrap;
   margin: 12px;
   margin-bottom: 32px;
+  color: #696670;
+  font-weight: bold;
 `;
 
 export default function Color({ name, ...props }) {

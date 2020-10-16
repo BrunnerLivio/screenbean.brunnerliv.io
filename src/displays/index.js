@@ -8,6 +8,7 @@ import {
 
 export const VibrantBackgroundDisplay = {
   name: "Vibrant Simple Background",
+  category: "Simple",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -19,6 +20,7 @@ export const VibrantBackgroundDisplay = {
 
 export const DarkVibrantBackgroundDisplay = {
   name: "Dark Vibrant Simple Background",
+  category: "Simple",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -30,6 +32,7 @@ export const DarkVibrantBackgroundDisplay = {
 
 export const LightVibrantBackgroundDisplay = {
   name: "Light Vibrant Simple Background",
+  category: "Simple",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -41,6 +44,7 @@ export const LightVibrantBackgroundDisplay = {
 
 export const MutedBackgroundDisplay = {
   name: "Muted Simple Background",
+  category: "Simple",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -52,6 +56,7 @@ export const MutedBackgroundDisplay = {
 
 export const VibrantGradientBackgroundDisplay = {
   name: "Vibrant Gradient Background",
+  category: "Gradient",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -65,6 +70,7 @@ export const VibrantGradientBackgroundDisplay = {
 
 export const DarkGradientBackgroundDisplay = {
   name: "Dark Vibrant Gradient Background",
+  category: "Gradient",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -78,6 +84,7 @@ export const DarkGradientBackgroundDisplay = {
 
 export const VibrantMaterialShadowDisplay = {
   name: "Vibrant Material Shadow",
+  category: "Shadow",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -90,6 +97,7 @@ export const VibrantMaterialShadowDisplay = {
 
 export const DarkVibrantMaterialShadowDisplay = {
   name: "Dark Vibrant Material Shadow",
+  category: "Shadow",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -102,6 +110,7 @@ export const DarkVibrantMaterialShadowDisplay = {
 
 export const VibrantNeoShadowDisplay = {
   name: "Vibrant Neomorphism Shadow",
+  category: "Shadow",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -114,6 +123,7 @@ export const VibrantNeoShadowDisplay = {
 
 export const DarkVibrantNeoShadowDisplay = {
   name: "Dark Vibrant Neomorphism Shadow",
+  category: "Shadow",
   component: React.forwardRef(({ ...props }, ref) => (
     <BackgroundDisplay
       ref={ref}
@@ -126,6 +136,7 @@ export const DarkVibrantNeoShadowDisplay = {
 
 export const VibrantPlayfulBackgroundDisplay = {
   name: "Vibrant Playful Background",
+  category: "Playful",
   component: React.forwardRef(({ ...props }, ref) => (
     <PlayfulBackgroundDisplay
       ref={ref}
@@ -139,6 +150,7 @@ export const VibrantPlayfulBackgroundDisplay = {
 
 export const DarkVibrantPlayfulBackgroundDisplay = {
   name: "Dark Vibrant Playful Background",
+  category: "Playful",
   component: React.forwardRef(({ ...props }, ref) => (
     <PlayfulBackgroundDisplay
       ref={ref}

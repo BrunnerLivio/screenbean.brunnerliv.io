@@ -1,7 +1,7 @@
 import React from "react";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
-import { generateBoxShadow } from "./util/generateBoxShadow";
+import { generateBoxShadow } from "../util/generateBoxShadow";
 
 const DropareaCard = styled.section`
   box-shadow: ${generateBoxShadow("#000000")};
