@@ -12,7 +12,7 @@ const DisplayDescription = styled.p`
   font-weight: 700;
   font-size: 16px;
   text-align: center;
-  text-shadow: 0px 2px 3px #ffffff, 0px 4px 6px #ffffff;
+  text-shadow: 0px 2px 3px #ffffff;
   @media only screen and (max-width: 800px) {
     font-size: 12px;
     font-weight: 500;
@@ -44,10 +44,10 @@ const CategoryTitleWrapper = styled.div`
     font-weight: 300;
     color: #696670;
     font-size: 32px;
-    text-shadow: 0px 2px 3px #ffffff, 0px 4px 6px #ffffff;
+    text-shadow: 0px 2px 3px #ffffff;
     position: relative;
     z-index: 1;
-    background: #f7fafc;
+    background: #ececec;
     padding: 0 24px;
     text-align: center;
     margin: 0;
@@ -59,7 +59,7 @@ const Line = styled.div`
   width: 300px;
   height: 2px;
   background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 2px 3px #ffffff, 0px 4px 6px #ffffff;
+  box-shadow: 0px 2px 3px #ffffff;
   left: calc(50% - 150px);
   top: 22px;
   z-index: 0;

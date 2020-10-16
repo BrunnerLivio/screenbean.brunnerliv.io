@@ -8,7 +8,7 @@ const FooterWrapper = styled.footer`
   font-size: 16px;
   font-weight: 300;
   margin: 64px 0;
-  margin-bottom: 128px;
+  margin-bottom: 32px;
   margin-left: 64px;
   word-wrap: break-word;
   @media only screen and (max-width: 600px) {
