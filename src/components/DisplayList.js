@@ -29,8 +29,6 @@ for (const display of displayComponents) {
   }
 }
 
-console.log(categories);
-
 export default function DisplayList({ colors, ...props }) {
   const window = useWindowSize();
 

@@ -1,8 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { saveAs } from "file-saver";
 import htmlToImage from "html-to-image";
+import Loader from "react-loader-spinner";
+
+import SaveModal from "./components/SaveModal";
+
 import { generateBoxShadow } from "./util/generateBoxShadow";
+import Check from "./components/icons/Check";
+import Cross from "./components/icons/Cross";
+
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 const Card = styled.div`
   border-radius: 8px;
@@ -50,18 +58,28 @@ const DownloadButton = styled.button`
 export default function displayCard(Component) {
   function DisplayCard({ image, ...rest }) {
     const $display = useRef();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
 
     async function saveImage() {
+      setIsModalOpen(true);
+      await sleep(500);
+
       try {
         $display.current.style.display = "flex";
         const dataUrl = await htmlToImage.toPng($display.current);
-
         saveAs(dataUrl, "image.png");
+        setIsSaved(true);
+        await sleep(500);
       } catch (error) {
         console.error(error);
-        alert("Could not save the image on this device :(");
+        setIsSaved("error");
+        await sleep(2000);
       } finally {
         $display.current.style.display = "none";
+        setIsModalOpen(false);
+        await sleep(500);
+        setIsSaved(false);
       }
     }
 
@@ -75,46 +93,65 @@ export default function displayCard(Component) {
     }
 
     return (
-      <Card>
-        <Component
-          ref={$display}
-          {...rest}
-          width={1800}
-          height={1350}
-          imgWidth={imgWidth}
-          imgHeight={imgHeight}
-          image={image}
-          style={{ display: "none" }}
-        />
-        <Component
-          image={image}
-          imgWidth={imgWidth}
-          imgHeight={imgHeight}
-          {...rest}
-        />
-        <ActionBar className="action-bar">
-          <Spacer />
-          <DownloadButton onClick={saveImage}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-download"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-              <polyline points="7 11 12 16 17 11" />
-              <line x1="12" y1="4" x2="12" y2="16" />
-            </svg>
-            <span>Download</span>
-          </DownloadButton>
-        </ActionBar>
-      </Card>
+      <>
+        <Card>
+          <Component
+            ref={$display}
+            {...rest}
+            width={1800}
+            height={1350}
+            imgWidth={imgWidth}
+            imgHeight={imgHeight}
+            image={image}
+            style={{ display: "none" }}
+          />
+          <Component
+            image={image}
+            imgWidth={imgWidth}
+            imgHeight={imgHeight}
+            {...rest}
+          />
+          <ActionBar className="action-bar">
+            <Spacer />
+            <DownloadButton onClick={saveImage}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-download"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                <polyline points="7 11 12 16 17 11" />
+                <line x1="12" y1="4" x2="12" y2="16" />
+              </svg>
+              <span>Download</span>
+            </DownloadButton>
+          </ActionBar>
+        </Card>
+        <SaveModal isOpen={isModalOpen}>
+          {isSaved === true ? (
+            <>
+              <Check color="#F0569A" />
+            </>
+          ) : isSaved === "error" ? (
+            <>
+              <Cross color="red" />
+              <span>Could not save the image :(</span>
+            </>
+          ) : (
+            <>
+              <Loader type="Rings" color="#F0569A" height={80} width={80} />
+              <span>Saving...</span>
+            </>
+          )}
+        </SaveModal>
+      </>
     );
   }
 
