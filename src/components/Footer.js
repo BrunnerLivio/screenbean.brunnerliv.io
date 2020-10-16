@@ -3,12 +3,17 @@ import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
   display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
   font-size: 16px;
   font-weight: 300;
   margin: 64px 0;
+  margin-bottom: 128px;
+  margin-left: 64px;
+  word-wrap: break-word;
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
   & > svg,
   span,
   a {

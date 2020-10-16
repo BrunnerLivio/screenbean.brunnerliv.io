@@ -13,6 +13,10 @@ const DisplayDescription = styled.p`
   font-size: 16px;
   text-align: center;
   text-shadow: 0px 2px 3px #ffffff, 0px 4px 6px #ffffff;
+  @media only screen and (max-width: 800px) {
+    font-size: 12px;
+    font-weight: 500;
+  }
 `;
 
 const DisplayRow = styled.section`
@@ -26,14 +30,39 @@ const DisplayRow = styled.section`
 
 const CategoryWrapper = styled.section`
   text-align: center;
+`;
+
+const CategoryTitleWrapper = styled.div`
+  margin-left: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+  position: relative;
+
   h3 {
-    margin-left: 64px;
     font-weight: 300;
     color: #696670;
-    margin-top: 64px;
     font-size: 32px;
     text-shadow: 0px 2px 3px #ffffff, 0px 4px 6px #ffffff;
+    position: relative;
+    z-index: 1;
+    background: #f7fafc;
+    padding: 0 24px;
+    text-align: center;
+    margin: 0;
   }
+`;
+
+const Line = styled.div`
+  position: absolute;
+  width: 300px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 2px 3px #ffffff, 0px 4px 6px #ffffff;
+  left: calc(50% - 150px);
+  top: 22px;
+  z-index: 0;
 `;
 
 export default function DisplayCategory({
@@ -45,7 +74,12 @@ export default function DisplayCategory({
 }) {
   return (
     <CategoryWrapper>
-      <h3>{category.name}</h3>
+      <CategoryTitleWrapper>
+        <div>
+          <h3>{category.name}</h3>
+          <Line />
+        </div>
+      </CategoryTitleWrapper>
       <DisplayRow>
         {category.displays.map(
           ({ name, component: Component }, displayIndex) => (

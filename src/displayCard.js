@@ -12,26 +12,12 @@ import Cross from "./components/icons/Cross";
 
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
-function iOS() {
-  return (
-    [
-      "iPad Simulator",
-      "iPhone Simulator",
-      "iPod Simulator",
-      "iPad",
-      "iPhone",
-      "iPod",
-    ].includes(navigator.platform) ||
-    // iPad on iOS 13 detection
-    (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-  );
-}
-
 const Card = styled.div`
   border-radius: 8px;
   margin: 0 32px;
   overflow: hidden;
   position: relative;
+  z-index: 3;
   box-shadow: ${generateBoxShadow("#000000")};
 `;
 
@@ -80,8 +66,11 @@ export default function displayCard(Component) {
       setIsModalOpen(true);
 
       await sleep(500);
+
+      document.body.style.overflow = "hidden";
+      $display.current.style.display = "flex";
+
       try {
-        $display.current.style.display = "flex";
         const dataUrl = await htmlToImage.toSvgDataURL($display.current);
         saveAs(dataUrl, "image.svg");
         setIsSaved(true);
@@ -92,6 +81,8 @@ export default function displayCard(Component) {
         await sleep(2000);
       } finally {
         $display.current.style.display = "none";
+        document.body.style.overflow = "";
+
         setIsModalOpen(false);
         await sleep(500);
         setIsSaved(false);
@@ -160,7 +151,7 @@ export default function displayCard(Component) {
               <span>Could not save the image :(</span>
             </>
           ) : (
-            <Loader type="Rings" color="#F0569A" height={80} width={80} />
+            <Loader type="Rings" color="#F0569A" height={160} width={160} />
           )}
         </SaveModal>
       </>
