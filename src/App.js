@@ -17,6 +17,7 @@ const Layout = styled.main`
 const Logo = styled.img`
   margin-top: 64px;
   margin-bottom: 64px;
+  max-width: 100%;
   @media only screen and (max-width: 800px) {
     margin-top: 16px;
     margin-bottom: 16px;
@@ -66,11 +67,11 @@ function App() {
 
   return (
     <Layout>
-      <img
+      {/* <img
         src="/logo.png"
         alt="Logo"
         style={{ margin: "64px", marginLeft: "128px" }}
-      />
+      /> */}
       <Palette colors={colors} />
       <DisplayList colors={colors} {...result} />
       <Footer />
