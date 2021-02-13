@@ -1,26 +1,28 @@
-import React, { useRef, useState } from "react";
-import styled from "styled-components";
-import { saveAs } from "file-saver";
-import htmlToImage from "html-to-image";
-import Loader from "react-loader-spinner";
+import React, { useRef, useState } from 'react';
+import styled from 'styled-components';
+import { saveAs } from 'file-saver';
+import * as htmlToImage from 'html-to-image';
+import Loader from 'react-loader-spinner';
 
-import SaveModal from "./components/SaveModal";
+import SaveModal from './components/SaveModal';
 
-import { generateBoxShadow } from "./util/generateBoxShadow";
-import Check from "./components/icons/Check";
-import Cross from "./components/icons/Cross";
+import { generateBoxShadow } from './util/generateBoxShadow';
+import Check from './components/icons/Check';
+import Cross from './components/icons/Cross';
 
 function iOS() {
-  return [
-    'iPad Simulator',
-    'iPhone Simulator',
-    'iPod Simulator',
-    'iPad',
-    'iPhone',
-    'iPod'
-  ].includes(navigator.platform)
-  // iPad on iOS 13 detection
-  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  return (
+    [
+      'iPad Simulator',
+      'iPhone Simulator',
+      'iPod Simulator',
+      'iPad',
+      'iPhone',
+      'iPod',
+    ].includes(navigator.platform) ||
+    // iPad on iOS 13 detection
+    (navigator.userAgent.includes('Mac') && 'ontouchend' in document)
+  );
 }
 
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
@@ -31,7 +33,7 @@ const Card = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 3;
-  box-shadow: ${generateBoxShadow("#000000")};
+  box-shadow: ${generateBoxShadow('#000000')};
 `;
 
 const ActionBar = styled.div`
@@ -80,26 +82,26 @@ export default function displayCard(Component) {
 
       await sleep(500);
 
-      document.body.style.overflow = "hidden";
-      $display.current.style.display = "flex";
+      document.body.style.overflow = 'hidden';
+      $display.current.style.display = 'flex';
 
       try {
-        if(iOS()) {
+        if (iOS()) {
           const dataUrl = await htmlToImage.toSvgDataURL($display.current);
-          saveAs(dataUrl, "screenbean.svg");
+          saveAs(dataUrl, 'screenbean.svg');
         } else {
           const dataUrl = await htmlToImage.toPng($display.current);
-          saveAs(dataUrl, "screenbean.png");
+          saveAs(dataUrl, 'screenbean.png');
         }
         setIsSaved(true);
         await sleep(500);
       } catch (error) {
         console.error(error);
-        setIsSaved("error");
+        setIsSaved('error');
         await sleep(2000);
       } finally {
-        $display.current.style.display = "none";
-        document.body.style.overflow = "";
+        $display.current.style.display = 'none';
+        document.body.style.overflow = '';
 
         setIsModalOpen(false);
         await sleep(500);
@@ -111,9 +113,9 @@ export default function displayCard(Component) {
       imgHeight = null;
 
     if (image.width > image.height) {
-      imgHeight = "75%";
+      imgHeight = '75%';
     } else {
-      imgWidth = "75%";
+      imgWidth = '75%';
     }
 
     return (
@@ -127,7 +129,7 @@ export default function displayCard(Component) {
             imgWidth={imgWidth}
             imgHeight={imgHeight}
             image={image}
-            style={{ display: "none" }}
+            style={{ display: 'none' }}
           />
           <Component
             image={image}
@@ -163,7 +165,7 @@ export default function displayCard(Component) {
             <>
               <Check color="#F0569A" />
             </>
-          ) : isSaved === "error" ? (
+          ) : isSaved === 'error' ? (
             <>
               <Cross color="red" />
               <span>Could not save the image :(</span>

@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from "react";
-import styled from "styled-components";
+import React, { useCallback, useState } from 'react';
+import styled from 'styled-components';
 
-import Dropzone from "./components/Dropzone";
-import Footer from "./components/Footer";
-import DisplayList from "./components/DisplayList";
-import Palette from "./components/Palette";
+import Dropzone from './components/Dropzone';
+import Footer from './components/Footer';
+import DisplayList from './components/DisplayList';
+import Palette from './components/Palette';
 
-import getProminetColors from "./util/getProminentColors";
+import getProminetColors from './util/getProminentColors';
 
 const Layout = styled.main`
   height: 100%;
@@ -22,7 +22,7 @@ const Logo = styled.img`
     margin-top: 16px;
     margin-bottom: 16px;
   }
-`
+`;
 
 const Content = styled.div`
   padding: 16px;
@@ -45,9 +45,12 @@ function App() {
     image: null,
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onDrop = useCallback(async (acceptedFiles) => {
+    setIsLoading(true);
     const c = await getProminetColors(acceptedFiles[0]);
-    setColors(c);
+    setTimeout(() => setColors(c), 500);
   }, []);
 
   if (!colors) {
@@ -57,9 +60,9 @@ function App() {
           <Logo
             src="/logo.png"
             alt="Logo"
-            style={{ marginTop: "64px", marginBottom: "64px" }}
+            style={{ marginTop: '64px', marginBottom: '64px' }}
           />
-          <Dropzone onDrop={onDrop} />
+          <Dropzone onDrop={onDrop} isLoading={isLoading} />
         </Content>
       </Layout>
     );
