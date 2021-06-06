@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from 'react';
-import styled from 'styled-components';
+import React, { useCallback, useState } from "react";
+import styled from "styled-components";
 
-import Dropzone from './components/Dropzone';
-import Footer from './components/Footer';
-import DisplayList from './components/DisplayList';
-import Palette from './components/Palette';
+import Dropzone from "./components/Dropzone";
+import Footer from "./components/Footer";
+import DisplayList from "./components/DisplayList";
+import Palette from "./components/Palette";
 
-import getProminetColors from './util/getProminentColors';
+import getProminetColors from "./util/getProminentColors";
 
 const Layout = styled.main`
   height: 100%;
@@ -40,17 +40,17 @@ const Content = styled.div`
 `;
 
 function App() {
-  const [{ colors, ...result }, setColors] = useState({
-    colors: null,
-    image: null,
-  });
-
+  const [state, setState] = useState({ colors: null, image: null });
   const [isLoading, setIsLoading] = useState(false);
+
+  const { colors, image } = state;
 
   const onDrop = useCallback(async (acceptedFiles) => {
     setIsLoading(true);
     const c = await getProminetColors(acceptedFiles[0]);
-    setTimeout(() => setColors(c), 500);
+    setTimeout(() => {
+      setState(c);
+    }, 500);
   }, []);
 
   if (!colors) {
@@ -60,7 +60,7 @@ function App() {
           <Logo
             src="/logo.png"
             alt="Logo"
-            style={{ marginTop: '64px', marginBottom: '64px' }}
+            style={{ marginTop: "64px", marginBottom: "64px" }}
           />
           <Dropzone onDrop={onDrop} isLoading={isLoading} />
         </Content>
@@ -69,16 +69,21 @@ function App() {
   }
 
   return (
-    <Layout>
-      {/* <img
+    <>
+      <Layout>
+        {/* <img
         src="/logo.png"
         alt="Logo"
         style={{ margin: "64px", marginLeft: "128px" }}
       /> */}
-      <Palette colors={colors} />
-      <DisplayList colors={colors} {...result} />
-      <Footer />
-    </Layout>
+        <Palette
+          colors={colors}
+          onChange={(colors) => setState({ ...state, colors })}
+        />
+        <DisplayList colors={colors} image={image} />
+        <Footer />
+      </Layout>
+    </>
   );
 }
 

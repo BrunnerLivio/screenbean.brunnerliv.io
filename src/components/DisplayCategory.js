@@ -70,7 +70,7 @@ export default function DisplayCategory({
   colors,
   displayWidth,
   displayHeight,
-  ...props
+  image,
 }) {
   return (
     <CategoryWrapper>
@@ -90,7 +90,7 @@ export default function DisplayCategory({
                 width={displayWidth}
                 height={displayHeight}
                 key={displayIndex}
-                {...props}
+                image={image}
               />
             </DisplayWrapper>
           )

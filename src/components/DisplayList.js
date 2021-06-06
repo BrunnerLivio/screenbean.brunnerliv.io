@@ -29,7 +29,7 @@ for (const display of displayComponents) {
   }
 }
 
-export default function DisplayList({ colors, ...props }) {
+export default function DisplayList({ colors, image }) {
   const window = useWindowSize();
 
   let width = 1200;
@@ -55,7 +55,7 @@ export default function DisplayList({ colors, ...props }) {
       category={category}
       colors={colors}
       key={index}
-      {...props}
+      image={image}
     />
   ));
 }
