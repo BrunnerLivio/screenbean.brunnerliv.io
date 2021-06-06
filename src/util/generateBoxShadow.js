@@ -14,10 +14,7 @@ export const generateBoxShadow = (color) => `0 2.8px 2.2px ${c(color)
       0 100px 80px ${c(color).fade(0.82).toString()}
   `;
 
-console.log(c("#000000").darken.toString());
-
 export const neomorphismBoxShadow = (color) => `20px 20px 60px ${c(color)
   .darken(0.5)
   .toString()}, 
 -20px -20px 60px ${c(color).lighten(0.5).toString()}`;
-

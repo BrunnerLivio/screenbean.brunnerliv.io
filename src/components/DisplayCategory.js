@@ -83,13 +83,12 @@ export default function DisplayCategory({
       <DisplayRow>
         {category.displays.map(
           ({ name, component: Component }, displayIndex) => (
-            <DisplayWrapper>
+            <DisplayWrapper key={"display-f-" + displayIndex}>
               <DisplayDescription>{name}</DisplayDescription>
               <Component
                 colors={colors}
                 width={displayWidth}
                 height={displayHeight}
-                key={displayIndex}
                 image={image}
               />
             </DisplayWrapper>

@@ -54,7 +54,7 @@ export default function DisplayList({ colors, image }) {
       displayHeight={width * ratio}
       category={category}
       colors={colors}
-      key={index}
+      key={"display-category-" + index}
       image={image}
     />
   ));

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import styled from 'styled-components';
-import { generateBoxShadow } from '../util/generateBoxShadow';
-import useInterval from '@use-it/interval';
+import React, { useState } from "react";
+import { useDropzone } from "react-dropzone";
+import styled from "styled-components";
+import { generateBoxShadow } from "../util/generateBoxShadow";
+import useInterval from "@use-it/interval";
 
 const DropareaCard = styled.section`
   @keyframes pulse {
@@ -19,14 +19,14 @@ const DropareaCard = styled.section`
     }
   }
 
-  box-shadow: ${generateBoxShadow('#000000')};
+  box-shadow: ${generateBoxShadow("#000000")};
   max-width: 600px;
   height: 400px;
   position: relative;
   z-index: 3;
 
   &:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     width: calc(100% - 20px);
@@ -39,7 +39,7 @@ const DropareaCard = styled.section`
   }
 
   &:after {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     width: calc(100% - 40px);
@@ -131,35 +131,35 @@ export default function Dropzone({ onDrop, isLoading }) {
   }, 10);
 
   return (
-    <DropareaCard className={isLoading ? 'is-loading' : ''}>
+    <DropareaCard className={isLoading ? "is-loading" : ""}>
       <Droparea {...getRootProps()}>
-        <DropareaBorder className={isDragActive ? 'active' : ''}>
+        <DropareaBorder className={isDragActive ? "active" : ""}>
           <input
             {...getInputProps()}
             accept="image/png, image/jpeg, image/svg, image/gif"
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="icon icon-tabler icon-tabler-cloud-upload"
+            className="icon icon-tabler icon-tabler-cloud-upload"
             width="82"
             height="82"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="#F15D97"
             fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <defs>
               <linearGradient
                 id="gradient"
-                x1={gradientPosition + '%'}
+                x1={gradientPosition + "%"}
                 y1="0%"
                 x2="0%"
-                y2={100 - gradientPosition + '%'}
+                y2={100 - gradientPosition + "%"}
               >
-                <stop offset="0%" stop-color="#FAA778" />
-                <stop offset="100%" stop-color="#F0569A" />
+                <stop offset="0%" stopColor="#FAA778" />
+                <stop offset="100%" stopColor="#F0569A" />
               </linearGradient>
             </defs>
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -171,7 +171,7 @@ export default function Dropzone({ onDrop, isLoading }) {
             <line stroke="#482EF0" x1="12" y1="12" x2="12" y2="21" />
           </svg>
           <FileTitle>
-            Drop file here to pimp your screenshots{' '}
+            Drop file here to pimp your screenshots{" "}
             <span role="img" aria-label="Sparkels emoji">
               ✨
             </span>
