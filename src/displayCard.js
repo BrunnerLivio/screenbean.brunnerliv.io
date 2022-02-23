@@ -12,6 +12,7 @@ import Cross from "./components/icons/Cross";
 import { useContext } from "react";
 import { Settings } from "./App";
 
+
 function iOS() {
   return (
     [
