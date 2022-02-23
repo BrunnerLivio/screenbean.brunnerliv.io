@@ -9,6 +9,8 @@ import SaveModal from "./components/SaveModal";
 import { generateBoxShadow } from "./util/generateBoxShadow";
 import Check from "./components/icons/Check";
 import Cross from "./components/icons/Cross";
+import { useContext } from "react";
+import { Settings } from "./App";
 
 function iOS() {
   return (
@@ -76,6 +78,7 @@ export default function displayCard(Component) {
     const $display = useRef();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
+    const settings = useContext(Settings)
 
     async function saveImage() {
       setIsModalOpen(true);
@@ -124,8 +127,8 @@ export default function displayCard(Component) {
           <Component
             ref={$display}
             {...rest}
-            width={1800}
-            height={1350}
+            width={settings.downloadWidth}
+            height={settings.downloadHeight}
             imgWidth={imgWidth}
             imgHeight={imgHeight}
             image={image}
