@@ -56,6 +56,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [downloadWidth, setWidth] = useState(1800)
   const [downloadHeight, setHeight] = useState(1350)
+  const [screenshotSize, setScreenshotSize] = useState(75)
 
   const { colors, image } = state;
 
@@ -83,7 +84,7 @@ function App() {
   }
 
   return (
-    <Settings.Provider value={{ downloadWidth: parseInt(downloadWidth), downloadHeight: parseInt(downloadHeight) }}>
+    <Settings.Provider value={{ downloadWidth: parseInt(downloadWidth), downloadHeight: parseInt(downloadHeight), screenshotSize }}>
       <Layout>
         {/* <img
         src="/logo.png"
@@ -95,11 +96,14 @@ function App() {
           onChange={(colors) => setState({ ...state, colors })}
         />
         <SettingsContainer>
-          <label for="width">Width (px): </label>
+          <label htmlFor="width">Width (px): </label>
           <input value={downloadWidth} onChange={(e) => setWidth(e.target.value)} id="width" type="number" />
 
-          <label for="height">Height (px): </label>
+          <label htmlFor="height">Height (px): </label>
           <input value={downloadHeight} onChange={(e) => setHeight(e.target.value)} id="height" type="number" />
+
+          <label htmlFor="screenshot-size">Screenshot size (%):</label>
+          <input value={screenshotSize} onChange={e => setScreenshotSize(e.target.value)} id="screenshot-size" type="range" />
         </SettingsContainer>
         <DisplayList colors={colors} image={image} />
         <Footer />

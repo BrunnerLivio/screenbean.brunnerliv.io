@@ -117,9 +117,9 @@ export default function displayCard(Component) {
       imgHeight = null;
 
     if (image.width > image.height) {
-      imgHeight = "75%";
+      imgHeight = settings.screenshotSize + "%";
     } else {
-      imgWidth = "75%";
+      imgWidth = settings.screenshotSize + "%";
     }
 
     return (
