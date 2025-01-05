@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
 import { generateBoxShadow } from "../util/generateBoxShadow";
@@ -115,6 +115,27 @@ export default function Dropzone({ onDrop, isLoading }) {
   const [gradientPosition, setGradientPosition] = useState(0);
   const [isGradientDesc, setIsGradientDesc] = useState(false);
 
+  // Handle clipboard paste
+  useEffect(() => {
+    const handlePaste = async (event) => {
+      const items = event.clipboardData?.items;
+      if (!items) return;
+
+      for (const item of items) {
+        if (item.type.indexOf('image') === 0) {
+          const file = item.getAsFile();
+          if (file) {
+            event.preventDefault();
+            onDrop([file]);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('paste', handlePaste);
+    return () => window.removeEventListener('paste', handlePaste);
+  }, [onDrop]);
+
   useInterval(() => {
     if (isLoading) {
       if (gradientPosition === 100) {
@@ -171,7 +192,7 @@ export default function Dropzone({ onDrop, isLoading }) {
             <line stroke="#482EF0" x1="12" y1="12" x2="12" y2="21" />
           </svg>
           <FileTitle>
-            Drop file here to pimp your screenshots{" "}
+            Drop file here or press Ctrl+V to paste{" "}
             <span role="img" aria-label="Sparkels emoji">
               ✨
             </span>
