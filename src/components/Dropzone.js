@@ -192,7 +192,7 @@ export default function Dropzone({ onDrop, isLoading }) {
             <line stroke="#482EF0" x1="12" y1="12" x2="12" y2="21" />
           </svg>
           <FileTitle>
-            Drop file here or press Ctrl+V to paste{" "}
+            Drop file here or press Ctrl+V to pimp your screenshots{" "}
             <span role="img" aria-label="Sparkels emoji">
               ✨
             </span>
